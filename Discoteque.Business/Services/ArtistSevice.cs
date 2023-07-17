@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Discoteque.Business.IServices;
 using Discoteque.Data.Models;
 
@@ -5,14 +6,21 @@ namespace Discoteque.Business.Services;
 
 public class ArtistService : IArtistService
 {
-    public Task<Artist> CreateArtist(Artist artist)
+    Random rnd = new Random();
+    public static List<Artist> list = new List<Artist>();
+    public async Task<Artist> CreateArtistAsync(Artist artist)
     {
-        throw new NotImplementedException();
+        int number = rnd.Next();
+        artist.Id = number;
+        list.Add(artist);
+        return artist;
+        // throw new NotImplementedException();
     }
-
-    public Task<IEnumerable<Artist>> GetArtistsAsync()
+    
+    public async Task<IEnumerable<Artist>> GetArtistsAsync()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
+        return list;
     }
 
     public Task<Artist> GetByIde(int id)
@@ -24,4 +32,6 @@ public class ArtistService : IArtistService
     {
         throw new NotImplementedException();
     }
+
+    
 }
